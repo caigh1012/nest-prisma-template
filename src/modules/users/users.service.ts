@@ -17,6 +17,6 @@ export class UsersService {
   }
 
   findAll() {
-    return this.prisma.t_user.findMany();
+    return [process.env.DATABASE_URL];
   }
 }
