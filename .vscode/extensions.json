@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "atommaterial.a-file-icon-vscode",
+    "dracula-theme.theme-dracula",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "imgildev.vscode-nestjs-generator",
+    "burkeholland.simple-react-snippets",
+    "EditorConfig.EditorConfig"
+  ]
+}
