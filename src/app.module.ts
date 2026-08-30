@@ -20,6 +20,8 @@ import { UsersModule } from './modules/users/users.module';
     LoggerModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
+        // 兼容 Nest 11 / Express 5 的命名通配符语法，避免全局前缀拼接成 /api/*
+        forRoutes: ['{*path}'],
         pinoHttp:
           configService.get('NODE_ENV') === 'production'
             ? {
@@ -34,7 +36,12 @@ import { UsersModule } from './modules/users/users.module';
                   },
                 },
               }
-            : { enabled: false },
+            : {
+                transport: {
+                  target: 'pino-pretty',
+                  options: { singleLine: true },
+                },
+              },
       }),
     }),
     SharedModule,
