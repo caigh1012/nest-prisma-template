@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import compression from 'compression';
+import { join } from 'path';
 import type { NestExpressApplication } from '@nestjs/platform-express';
 import { Logger } from 'nestjs-pino';
 import { AppModule } from './app.module';
@@ -18,6 +19,11 @@ async function bootstrap() {
 
   // 开启 CORS ，跨域资源共享 (CORS) 是一种允许从其他域请求资源的机制
   app.enableCors();
+
+  // 静态资源服务：/public/
+  app.useStaticAssets(join(__dirname, '../..', 'public'), {
+    prefix: '/public/',
+  });
 
   // 开启压缩 压缩响应体
   app.use(compression());
