@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 import { SharedModule } from './modules/shared/shared.module';
 import { UsersModule } from './modules/users/users.module';
 
@@ -16,6 +17,18 @@ import { UsersModule } from './modules/users/users.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+
+    // 事件总线：统一使用 user.created 这类命名，支持后续 user.* 通配监听
+    EventEmitterModule.forRoot({
+      wildcard: true, // 开启通配符事件匹配，如 user.*
+      delimiter: '.', // 事件命名分隔符，对应 user.created 这种风格
+      newListener: false, // 不额外发布“新增监听器”事件
+      removeListener: false, // 不额外发布“移除监听器”事件
+      maxListeners: 20, // 允许更多监听器，减少业务模块增多后的告警
+      verboseMemoryLeak: true, // 超过监听器上限时输出更明确的泄漏提示
+      ignoreErrors: false, // 监听器抛错时继续向外抛出，避免静默失败
+    }),
+
     // pino 日志：仅生产环境按天滚动（文件名带日期），单个文件超过 10MB 自动创建新文件
     LoggerModule.forRootAsync({
       inject: [ConfigService],

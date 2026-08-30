@@ -30,3 +30,5 @@
 ## 守卫
 
 ## 授权和验证
+
+## @nestjs/event-emitter
