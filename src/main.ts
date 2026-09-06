@@ -1,12 +1,13 @@
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import compression from 'compression';
 import { join } from 'path';
 import type { NestExpressApplication } from '@nestjs/platform-express';
 import { Logger } from 'nestjs-pino';
 import { AppModule } from './app.module';
-import { loggerMiddleware } from './global/middlewares/logger.middleware';
-import { HttpExceptionFilter } from './global/filters/http-exception.filter';
-import { ValidationPipe } from './global/pipes/validation.pipe';
+import { loggerMiddleware } from '@/global/middlewares/logger.middleware';
+import { HttpExceptionFilter } from '@/global/filters/http-exception.filter';
+import { ValidationPipe } from '@/global/pipes/validation.pipe';
+import { ClassSerializerInterceptor } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -36,6 +37,9 @@ async function bootstrap() {
 
   // 全局参数校验管道（class-validator + class-transformer）
   app.useGlobalPipes(new ValidationPipe());
+
+  // 全局响应序列化拦截器（配合 class-transformer 的 @Exclude/@Expose 使用）
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
   // 使用 pino 作为全局 Logger（写入 ./logs 下的日志文件）
   app.useLogger(app.get(Logger));

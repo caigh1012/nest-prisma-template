@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { LoggerModule } from 'nestjs-pino';
 import { EventEmitterModule } from '@nestjs/event-emitter';
-import { SharedModule } from './modules/shared/shared.module';
+import { LoggerModule } from 'nestjs-pino';
+import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
 
 /**
@@ -13,6 +13,7 @@ import { UsersModule } from './modules/users/users.module';
  */
 @Module({
   imports: [
+    AuthModule,
     // 引入 env 文件配置
     ConfigModule.forRoot({
       isGlobal: true,
@@ -57,7 +58,7 @@ import { UsersModule } from './modules/users/users.module';
               },
       }),
     }),
-    SharedModule,
+    AuthModule,
     UsersModule,
   ],
   providers: [],

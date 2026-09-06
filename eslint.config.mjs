@@ -26,13 +26,16 @@ export default tseslint.config(
   },
   {
     rules: {
+      'no-useless-catch': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/restrict-template-expressions': 'off',
       '@typescript-eslint/no-unsafe-enum-comparison': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/require-await': 'off',
       '@typescript-eslint/no-floating-promises': 'warn',
-      '@typescript-eslint/no-unsafe-argument': 'warn',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
       'prettier/prettier': ['error', { endOfLine: 'auto' }],
     },
   },

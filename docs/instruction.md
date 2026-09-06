@@ -31,4 +31,6 @@
 
 ## 授权和验证
 
+Nest 的请求预处理管线顺序是：Middleware → Guard → Interceptor(前置) → Pipe → Controller → Service → Interceptor(后置) → 响应。守卫正好卡在「路由执行之前、参数校验之前」，是做「能不能进」判断的最佳位置——这正是下一篇文章（守卫）会深挖的点。
+
 ## @nestjs/event-emitter
