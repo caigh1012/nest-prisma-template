@@ -1,8 +1,12 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { APP_GUARD } from '@nestjs/core';
+import { PassportModule } from '@nestjs/passport';
 import { LoggerModule } from 'nestjs-pino';
-import { AuthModule } from './modules/auth/auth.module';
+import { LoginModule } from './modules/login/login.module';
+import { JwtAuthGuard } from './global/guards/jwt-auth.guard';
+import { JwtAuthStrategy } from './global/guards/strategy/jwt-auth.strategy';
 import { UsersModule } from './modules/users/users.module';
 
 /**
@@ -13,7 +17,6 @@ import { UsersModule } from './modules/users/users.module';
  */
 @Module({
   imports: [
-    AuthModule,
     // 引入 env 文件配置
     ConfigModule.forRoot({
       isGlobal: true,
@@ -58,9 +61,24 @@ import { UsersModule } from './modules/users/users.module';
               },
       }),
     }),
-    AuthModule,
+    PassportModule,
+    LoginModule,
     UsersModule,
   ],
-  providers: [],
+  providers: [
+    JwtAuthStrategy,
+    JwtAuthGuard,
+    {
+      provide: APP_GUARD,
+      inject: [JwtAuthStrategy, JwtAuthGuard],
+      useFactory: (jwtAuthStrategy: JwtAuthStrategy, jwtAuthGuard: JwtAuthGuard) => {
+        if (!jwtAuthStrategy) {
+          throw new Error('JwtAuthStrategy must be initialized before APP_GUARD');
+        }
+
+        return jwtAuthGuard;
+      },
+    },
+  ],
 })
 export class AppModule {}

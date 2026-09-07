@@ -29,6 +29,8 @@ async function bootstrap() {
   // 开启压缩 压缩响应体
   app.use(compression());
 
+  // app.useGlobalGuards(new JwtAuthGuard());
+
   // 全局日志 仅记录 /api 下的请求；Express 会自动匹配 /api 及其子路径
   app.use('/api', loggerMiddleware);
 
