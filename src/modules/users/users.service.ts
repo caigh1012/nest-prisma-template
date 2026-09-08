@@ -4,10 +4,14 @@ import { randomUUID } from 'node:crypto';
 import { PrismaService } from '../../core/database/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserEntity } from './entities/user.entity';
+import { HttpService } from '@nestjs/axios';
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly httpService: HttpService,
+  ) {}
 
   async create(createUserDto: CreateUserDto) {
     const user = await this.prisma.t_user.create({

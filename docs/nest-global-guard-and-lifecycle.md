@@ -80,3 +80,7 @@
 ## 需要特别注意的一点
 
 `useGlobalFilters`、`useGlobalPipes`、`useGlobalInterceptors` 虽然都写在 `main.ts` 里，但它们之间并不是“谁先注册谁先执行”的关系，而是处在 Nest 请求生命周期中的不同固定位置。
+
+## 详细可以参考
+
+https://docs.nestjs.com/faq/request-lifecycle

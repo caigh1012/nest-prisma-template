@@ -8,7 +8,6 @@ import { LoginModule } from './modules/login/login.module';
 import { JwtAuthGuard } from './global/guards/jwt-auth.guard';
 import { JwtAuthStrategy } from './global/guards/strategy/jwt-auth.strategy';
 import { UsersModule } from './modules/users/users.module';
-
 /**
  * 应用模块
  * 1. 引入配置模块
