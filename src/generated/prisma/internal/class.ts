@@ -19,7 +19,7 @@ const config: runtime.GetPrismaClientConfig = {
   engineVersion: 'e922089b7d7502aff4249d5da3420f6fa55fc6ad',
   activeProvider: 'postgresql',
   inlineSchema:
-    '// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Get a free hosted Postgres database in seconds: `npx create-db`\n\ngenerator client {\n  provider     = "prisma-client"\n  output       = "../src/generated/prisma"\n  moduleFormat = "cjs"\n}\n\ndatasource db {\n  provider = "postgresql"\n}\n\nenum Gender {\n  MALE\n  FEMALE\n  UNKNOWN\n}\n\nmodel t_user {\n  id        String  @id\n  username  String  @unique @db.VarChar(20)\n  nickname  String  @db.VarChar(12)\n  email     String? @db.VarChar(255)\n  password  String  @db.VarChar(16)\n  gender    Gender? @default(UNKNOWN)\n  avatarUrl String?\n}\n',
+    '// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Get a free hosted Postgres database in seconds: `npx create-db`\n\ngenerator client {\n  provider     = "prisma-client"\n  output       = "../src/generated/prisma"\n  moduleFormat = "cjs"\n}\n\ndatasource db {\n  provider = "postgresql"\n}\n\nenum Gender {\n  MALE\n  FEMALE\n  UNKNOWN\n}\n\nmodel t_user {\n  id        String  @id\n  username  String  @unique @db.VarChar(20)\n  nickname  String  @db.VarChar(12)\n  email     String? @db.VarChar(255)\n  password  String  @db.VarChar(255)\n  gender    Gender? @default(UNKNOWN)\n  avatarUrl String?\n}\n',
   runtimeDataModel: {
     models: {},
     enums: {},

@@ -8,7 +8,7 @@ export class JwtAuthGuard extends AuthGuard('jwtAuth') {
    * 放行不需要 JWT 鉴权的 URL。
    * 如需新增公开接口，继续在这里补充即可。
    */
-  private static readonly authWhitelist: ReadonlyArray<string> = ['/api/login'];
+  private static readonly authWhitelist: ReadonlyArray<string> = ['/api/login', '/api/user/register'];
 
   canActivate(context: ExecutionContext) {
     const request = context.switchToHttp().getRequest<Request>();

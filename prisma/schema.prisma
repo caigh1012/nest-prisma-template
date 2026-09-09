@@ -24,7 +24,7 @@ model t_user {
   username   String      @unique @db.VarChar(20)
   nickname   String      @db.VarChar(12)
   email      String?     @db.VarChar(255)
-  password   String      @db.VarChar(16)
+  password   String      @db.VarChar(255)
   gender     Gender?     @default(UNKNOWN)
   avatarUrl  String?
 }
