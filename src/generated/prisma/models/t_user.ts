@@ -194,6 +194,7 @@ export type t_userWhereInput = {
   password?: Prisma.StringFilter<'t_user'> | string;
   gender?: Prisma.EnumGenderNullableFilter<'t_user'> | $Enums.Gender | null;
   avatarUrl?: Prisma.StringNullableFilter<'t_user'> | string | null;
+  user_roles?: Prisma.T_user_roleListRelationFilter;
 };
 
 export type t_userOrderByWithRelationInput = {
@@ -204,6 +205,7 @@ export type t_userOrderByWithRelationInput = {
   password?: Prisma.SortOrder;
   gender?: Prisma.SortOrderInput | Prisma.SortOrder;
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder;
+  user_roles?: Prisma.t_user_roleOrderByRelationAggregateInput;
 };
 
 export type t_userWhereUniqueInput = Prisma.AtLeast<
@@ -218,6 +220,7 @@ export type t_userWhereUniqueInput = Prisma.AtLeast<
     password?: Prisma.StringFilter<'t_user'> | string;
     gender?: Prisma.EnumGenderNullableFilter<'t_user'> | $Enums.Gender | null;
     avatarUrl?: Prisma.StringNullableFilter<'t_user'> | string | null;
+    user_roles?: Prisma.T_user_roleListRelationFilter;
   },
   'id' | 'username'
 >;
@@ -256,6 +259,7 @@ export type t_userCreateInput = {
   password: string;
   gender?: $Enums.Gender | null;
   avatarUrl?: string | null;
+  user_roles?: Prisma.t_user_roleCreateNestedManyWithoutUserInput;
 };
 
 export type t_userUncheckedCreateInput = {
@@ -266,6 +270,7 @@ export type t_userUncheckedCreateInput = {
   password: string;
   gender?: $Enums.Gender | null;
   avatarUrl?: string | null;
+  user_roles?: Prisma.t_user_roleUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type t_userUpdateInput = {
@@ -276,6 +281,7 @@ export type t_userUpdateInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string;
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null;
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  user_roles?: Prisma.t_user_roleUpdateManyWithoutUserNestedInput;
 };
 
 export type t_userUncheckedUpdateInput = {
@@ -286,6 +292,7 @@ export type t_userUncheckedUpdateInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string;
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null;
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  user_roles?: Prisma.t_user_roleUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type t_userCreateManyInput = {
@@ -348,6 +355,11 @@ export type t_userMinOrderByAggregateInput = {
   avatarUrl?: Prisma.SortOrder;
 };
 
+export type T_userScalarRelationFilter = {
+  is?: Prisma.t_userWhereInput;
+  isNot?: Prisma.t_userWhereInput;
+};
+
 export type StringFieldUpdateOperationsInput = {
   set?: string;
 };
@@ -360,6 +372,114 @@ export type NullableEnumGenderFieldUpdateOperationsInput = {
   set?: $Enums.Gender | null;
 };
 
+export type t_userCreateNestedOneWithoutUser_rolesInput = {
+  create?: Prisma.XOR<Prisma.t_userCreateWithoutUser_rolesInput, Prisma.t_userUncheckedCreateWithoutUser_rolesInput>;
+  connectOrCreate?: Prisma.t_userCreateOrConnectWithoutUser_rolesInput;
+  connect?: Prisma.t_userWhereUniqueInput;
+};
+
+export type t_userUpdateOneRequiredWithoutUser_rolesNestedInput = {
+  create?: Prisma.XOR<Prisma.t_userCreateWithoutUser_rolesInput, Prisma.t_userUncheckedCreateWithoutUser_rolesInput>;
+  connectOrCreate?: Prisma.t_userCreateOrConnectWithoutUser_rolesInput;
+  upsert?: Prisma.t_userUpsertWithoutUser_rolesInput;
+  connect?: Prisma.t_userWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<Prisma.t_userUpdateToOneWithWhereWithoutUser_rolesInput, Prisma.t_userUpdateWithoutUser_rolesInput>,
+    Prisma.t_userUncheckedUpdateWithoutUser_rolesInput
+  >;
+};
+
+export type t_userCreateWithoutUser_rolesInput = {
+  id: string;
+  username: string;
+  nickname: string;
+  email?: string | null;
+  password: string;
+  gender?: $Enums.Gender | null;
+  avatarUrl?: string | null;
+};
+
+export type t_userUncheckedCreateWithoutUser_rolesInput = {
+  id: string;
+  username: string;
+  nickname: string;
+  email?: string | null;
+  password: string;
+  gender?: $Enums.Gender | null;
+  avatarUrl?: string | null;
+};
+
+export type t_userCreateOrConnectWithoutUser_rolesInput = {
+  where: Prisma.t_userWhereUniqueInput;
+  create: Prisma.XOR<Prisma.t_userCreateWithoutUser_rolesInput, Prisma.t_userUncheckedCreateWithoutUser_rolesInput>;
+};
+
+export type t_userUpsertWithoutUser_rolesInput = {
+  update: Prisma.XOR<Prisma.t_userUpdateWithoutUser_rolesInput, Prisma.t_userUncheckedUpdateWithoutUser_rolesInput>;
+  create: Prisma.XOR<Prisma.t_userCreateWithoutUser_rolesInput, Prisma.t_userUncheckedCreateWithoutUser_rolesInput>;
+  where?: Prisma.t_userWhereInput;
+};
+
+export type t_userUpdateToOneWithWhereWithoutUser_rolesInput = {
+  where?: Prisma.t_userWhereInput;
+  data: Prisma.XOR<Prisma.t_userUpdateWithoutUser_rolesInput, Prisma.t_userUncheckedUpdateWithoutUser_rolesInput>;
+};
+
+export type t_userUpdateWithoutUser_rolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  username?: Prisma.StringFieldUpdateOperationsInput | string;
+  nickname?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  password?: Prisma.StringFieldUpdateOperationsInput | string;
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null;
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+};
+
+export type t_userUncheckedUpdateWithoutUser_rolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  username?: Prisma.StringFieldUpdateOperationsInput | string;
+  nickname?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  password?: Prisma.StringFieldUpdateOperationsInput | string;
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null;
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+};
+
+/**
+ * Count Type T_userCountOutputType
+ */
+
+export type T_userCountOutputType = {
+  user_roles: number;
+};
+
+export type T_userCountOutputTypeSelect<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  user_roles?: boolean | T_userCountOutputTypeCountUser_rolesArgs;
+};
+
+/**
+ * T_userCountOutputType without action
+ */
+export type T_userCountOutputTypeDefaultArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the T_userCountOutputType
+   */
+  select?: Prisma.T_userCountOutputTypeSelect<ExtArgs> | null;
+};
+
+/**
+ * T_userCountOutputType without action
+ */
+export type T_userCountOutputTypeCountUser_rolesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.t_user_roleWhereInput;
+};
+
 export type t_userSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
   runtime.Types.Extensions.GetSelect<
     {
@@ -370,6 +490,8 @@ export type t_userSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
       password?: boolean;
       gender?: boolean;
       avatarUrl?: boolean;
+      user_roles?: boolean | Prisma.t_user$user_rolesArgs<ExtArgs>;
+      _count?: boolean | Prisma.T_userCountOutputTypeDefaultArgs<ExtArgs>;
     },
     ExtArgs['result']['t_user']
   >;
@@ -419,12 +541,26 @@ export type t_userOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
     'id' | 'username' | 'nickname' | 'email' | 'password' | 'gender' | 'avatarUrl',
     ExtArgs['result']['t_user']
   >;
+export type t_userInclude<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  user_roles?: boolean | Prisma.t_user$user_rolesArgs<ExtArgs>;
+  _count?: boolean | Prisma.T_userCountOutputTypeDefaultArgs<ExtArgs>;
+};
+export type t_userIncludeCreateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {};
+export type t_userIncludeUpdateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {};
 
 export type $t_userPayload<
   ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   name: 't_user';
-  objects: {};
+  objects: {
+    user_roles: Prisma.$t_user_rolePayload<ExtArgs>[];
+  };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
       id: string;
@@ -911,6 +1047,11 @@ export interface Prisma__t_userClient<
   GlobalOmitOptions = {},
 > extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: 'PrismaPromise';
+  user_roles<T extends Prisma.t_user$user_rolesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.t_user$user_rolesArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    runtime.Types.Result.GetResult<Prisma.$t_user_rolePayload<ExtArgs>, T, 'findMany', GlobalOmitOptions> | Null
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -967,6 +1108,10 @@ export type t_userFindUniqueArgs<
    */
   omit?: Prisma.t_userOmit<ExtArgs> | null;
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.t_userInclude<ExtArgs> | null;
+  /**
    * Filter, which t_user to fetch.
    */
   where: Prisma.t_userWhereUniqueInput;
@@ -987,6 +1132,10 @@ export type t_userFindUniqueOrThrowArgs<
    */
   omit?: Prisma.t_userOmit<ExtArgs> | null;
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.t_userInclude<ExtArgs> | null;
+  /**
    * Filter, which t_user to fetch.
    */
   where: Prisma.t_userWhereUniqueInput;
@@ -1006,6 +1155,10 @@ export type t_userFindFirstArgs<
    * Omit specific fields from the t_user
    */
   omit?: Prisma.t_userOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.t_userInclude<ExtArgs> | null;
   /**
    * Filter, which t_user to fetch.
    */
@@ -1057,6 +1210,10 @@ export type t_userFindFirstOrThrowArgs<
    */
   omit?: Prisma.t_userOmit<ExtArgs> | null;
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.t_userInclude<ExtArgs> | null;
+  /**
    * Filter, which t_user to fetch.
    */
   where?: Prisma.t_userWhereInput;
@@ -1107,6 +1264,10 @@ export type t_userFindManyArgs<
    */
   omit?: Prisma.t_userOmit<ExtArgs> | null;
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.t_userInclude<ExtArgs> | null;
+  /**
    * Filter, which t_users to fetch.
    */
   where?: Prisma.t_userWhereInput;
@@ -1156,6 +1317,10 @@ export type t_userCreateArgs<
    * Omit specific fields from the t_user
    */
   omit?: Prisma.t_userOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.t_userInclude<ExtArgs> | null;
   /**
    * The data needed to create a t_user.
    */
@@ -1210,6 +1375,10 @@ export type t_userUpdateArgs<
    * Omit specific fields from the t_user
    */
   omit?: Prisma.t_userOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.t_userInclude<ExtArgs> | null;
   /**
    * The data needed to update a t_user.
    */
@@ -1283,6 +1452,10 @@ export type t_userUpsertArgs<
    */
   omit?: Prisma.t_userOmit<ExtArgs> | null;
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.t_userInclude<ExtArgs> | null;
+  /**
    * The filter to search for the t_user to update in case it exists.
    */
   where: Prisma.t_userWhereUniqueInput;
@@ -1311,6 +1484,10 @@ export type t_userDeleteArgs<
    */
   omit?: Prisma.t_userOmit<ExtArgs> | null;
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.t_userInclude<ExtArgs> | null;
+  /**
    * Filter which t_user to delete.
    */
   where: Prisma.t_userWhereUniqueInput;
@@ -1333,6 +1510,32 @@ export type t_userDeleteManyArgs<
 };
 
 /**
+ * t_user.user_roles
+ */
+export type t_user$user_rolesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the t_user_role
+   */
+  select?: Prisma.t_user_roleSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the t_user_role
+   */
+  omit?: Prisma.t_user_roleOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.t_user_roleInclude<ExtArgs> | null;
+  where?: Prisma.t_user_roleWhereInput;
+  orderBy?: Prisma.t_user_roleOrderByWithRelationInput | Prisma.t_user_roleOrderByWithRelationInput[];
+  cursor?: Prisma.t_user_roleWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.T_user_roleScalarFieldEnum | Prisma.T_user_roleScalarFieldEnum[];
+};
+
+/**
  * t_user without action
  */
 export type t_userDefaultArgs<
@@ -1346,4 +1549,8 @@ export type t_userDefaultArgs<
    * Omit specific fields from the t_user
    */
   omit?: Prisma.t_userOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.t_userInclude<ExtArgs> | null;
 };

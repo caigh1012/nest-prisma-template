@@ -4,9 +4,9 @@ import { join } from 'path';
 import type { NestExpressApplication } from '@nestjs/platform-express';
 import { Logger } from 'nestjs-pino';
 import { AppModule } from './app.module';
-import { loggerMiddleware } from '@/global/middlewares/logger.middleware';
-import { HttpExceptionFilter } from '@/global/filters/http-exception.filter';
-import { ValidationPipe } from '@/global/pipes/validation.pipe';
+import { loggerMiddleware } from '@/core/middlewares/logger.middleware';
+import { HttpExceptionFilter } from '@/core/filters/http-exception.filter';
+import { ValidationPipe } from '@/core/pipes/validation.pipe';
 import { ClassSerializerInterceptor } from '@nestjs/common';
 
 async function bootstrap() {

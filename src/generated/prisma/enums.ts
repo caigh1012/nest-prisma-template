@@ -15,3 +15,10 @@ export const Gender = {
 } as const;
 
 export type Gender = (typeof Gender)[keyof typeof Gender];
+
+export const RoleType = {
+  custom: 'custom',
+  system: 'system',
+} as const;
+
+export type RoleType = (typeof RoleType)[keyof typeof RoleType];

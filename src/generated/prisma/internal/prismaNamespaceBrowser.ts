@@ -49,6 +49,8 @@ export const AnyNull = runtime.AnyNull;
 
 export const ModelName = {
   t_user: 't_user',
+  t_role: 't_role',
+  t_user_role: 't_user_role',
 } as const;
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
@@ -77,6 +79,23 @@ export const T_userScalarFieldEnum = {
 } as const;
 
 export type T_userScalarFieldEnum = (typeof T_userScalarFieldEnum)[keyof typeof T_userScalarFieldEnum];
+
+export const T_roleScalarFieldEnum = {
+  id: 'id',
+  role_id: 'role_id',
+  role_label: 'role_label',
+  role_type: 'role_type',
+} as const;
+
+export type T_roleScalarFieldEnum = (typeof T_roleScalarFieldEnum)[keyof typeof T_roleScalarFieldEnum];
+
+export const T_user_roleScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  role_id: 'role_id',
+} as const;
+
+export type T_user_roleScalarFieldEnum = (typeof T_user_roleScalarFieldEnum)[keyof typeof T_user_roleScalarFieldEnum];
 
 export const SortOrder = {
   asc: 'asc',

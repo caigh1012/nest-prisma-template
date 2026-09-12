@@ -21,3 +21,13 @@ export * from './enums.js';
  *
  */
 export type t_user = Prisma.t_userModel;
+/**
+ * Model t_role
+ *
+ */
+export type t_role = Prisma.t_roleModel;
+/**
+ * Model t_user_role
+ *
+ */
+export type t_user_role = Prisma.t_user_roleModel;

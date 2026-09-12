@@ -5,9 +5,12 @@ import { APP_GUARD } from '@nestjs/core';
 import { PassportModule } from '@nestjs/passport';
 import { LoggerModule } from 'nestjs-pino';
 import { LoginModule } from './modules/login/login.module';
-import { JwtAuthGuard } from './global/guards/jwt-auth.guard';
-import { JwtAuthStrategy } from './global/guards/strategy/jwt-auth.strategy';
+import { JwtAuthGuard } from './core/guards/jwt-auth.guard';
+import { JwtAuthStrategy } from './core/guards/strategy/jwt-auth.strategy';
 import { UsersModule } from './modules/users/users.module';
+import { SharedModule } from './modules/shared/shared.module';
+import { RolesGuard } from './core/guards/roles.guard';
+import { PrismaModule } from './core/database/prisma.module';
 /**
  * 应用模块
  * 1. 引入配置模块
@@ -61,12 +64,16 @@ import { UsersModule } from './modules/users/users.module';
       }),
     }),
     PassportModule,
+    PrismaModule,
+    SharedModule,
     LoginModule,
     UsersModule,
   ],
   providers: [
     JwtAuthStrategy,
     JwtAuthGuard,
+    RolesGuard,
+    // 对于同一个模块里注册的多个 APP_GUARD，执行顺序就是注册顺序。
     {
       provide: APP_GUARD,
       inject: [JwtAuthStrategy, JwtAuthGuard],
@@ -77,6 +84,10 @@ import { UsersModule } from './modules/users/users.module';
 
         return jwtAuthGuard;
       },
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
     },
   ],
 })

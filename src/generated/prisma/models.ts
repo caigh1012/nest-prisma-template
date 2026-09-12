@@ -8,4 +8,6 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/t_user.js';
+export type * from './models/t_role.js';
+export type * from './models/t_user_role.js';
 export type * from './commonInputTypes.js';

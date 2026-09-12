@@ -27,6 +27,7 @@ export default tseslint.config(
   {
     rules: {
       'no-useless-catch': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/restrict-template-expressions': 'off',
       '@typescript-eslint/no-unsafe-enum-comparison': 'off',

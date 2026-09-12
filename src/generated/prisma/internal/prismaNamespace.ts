@@ -380,6 +380,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   t_user: 't_user',
+  t_role: 't_role',
+  t_user_role: 't_user_role',
 } as const;
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
@@ -399,7 +401,7 @@ export type TypeMap<
     omit: GlobalOmitOptions;
   };
   meta: {
-    modelProps: 't_user';
+    modelProps: 't_user' | 't_role' | 't_user_role';
     txIsolationLevel: TransactionIsolationLevel;
   };
   model: {
@@ -477,6 +479,154 @@ export type TypeMap<
         };
       };
     };
+    t_role: {
+      payload: Prisma.$t_rolePayload<ExtArgs>;
+      fields: Prisma.t_roleFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.t_roleFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_rolePayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.t_roleFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_rolePayload>;
+        };
+        findFirst: {
+          args: Prisma.t_roleFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_rolePayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.t_roleFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_rolePayload>;
+        };
+        findMany: {
+          args: Prisma.t_roleFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_rolePayload>[];
+        };
+        create: {
+          args: Prisma.t_roleCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_rolePayload>;
+        };
+        createMany: {
+          args: Prisma.t_roleCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.t_roleCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_rolePayload>[];
+        };
+        delete: {
+          args: Prisma.t_roleDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_rolePayload>;
+        };
+        update: {
+          args: Prisma.t_roleUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_rolePayload>;
+        };
+        deleteMany: {
+          args: Prisma.t_roleDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.t_roleUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.t_roleUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_rolePayload>[];
+        };
+        upsert: {
+          args: Prisma.t_roleUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_rolePayload>;
+        };
+        aggregate: {
+          args: Prisma.T_roleAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateT_role>;
+        };
+        groupBy: {
+          args: Prisma.t_roleGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.T_roleGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.t_roleCountArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.T_roleCountAggregateOutputType> | number;
+        };
+      };
+    };
+    t_user_role: {
+      payload: Prisma.$t_user_rolePayload<ExtArgs>;
+      fields: Prisma.t_user_roleFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.t_user_roleFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_user_rolePayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.t_user_roleFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_user_rolePayload>;
+        };
+        findFirst: {
+          args: Prisma.t_user_roleFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_user_rolePayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.t_user_roleFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_user_rolePayload>;
+        };
+        findMany: {
+          args: Prisma.t_user_roleFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_user_rolePayload>[];
+        };
+        create: {
+          args: Prisma.t_user_roleCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_user_rolePayload>;
+        };
+        createMany: {
+          args: Prisma.t_user_roleCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.t_user_roleCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_user_rolePayload>[];
+        };
+        delete: {
+          args: Prisma.t_user_roleDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_user_rolePayload>;
+        };
+        update: {
+          args: Prisma.t_user_roleUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_user_rolePayload>;
+        };
+        deleteMany: {
+          args: Prisma.t_user_roleDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.t_user_roleUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.t_user_roleUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_user_rolePayload>[];
+        };
+        upsert: {
+          args: Prisma.t_user_roleUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$t_user_rolePayload>;
+        };
+        aggregate: {
+          args: Prisma.T_user_roleAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateT_user_role>;
+        };
+        groupBy: {
+          args: Prisma.t_user_roleGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.T_user_roleGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.t_user_roleCountArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.T_user_roleCountAggregateOutputType> | number;
+        };
+      };
+    };
   };
 } & {
   other: {
@@ -527,6 +677,23 @@ export const T_userScalarFieldEnum = {
 
 export type T_userScalarFieldEnum = (typeof T_userScalarFieldEnum)[keyof typeof T_userScalarFieldEnum];
 
+export const T_roleScalarFieldEnum = {
+  id: 'id',
+  role_id: 'role_id',
+  role_label: 'role_label',
+  role_type: 'role_type',
+} as const;
+
+export type T_roleScalarFieldEnum = (typeof T_roleScalarFieldEnum)[keyof typeof T_roleScalarFieldEnum];
+
+export const T_user_roleScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  role_id: 'role_id',
+} as const;
+
+export type T_user_roleScalarFieldEnum = (typeof T_user_roleScalarFieldEnum)[keyof typeof T_user_roleScalarFieldEnum];
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc',
@@ -571,6 +738,16 @@ export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
  * Reference to a field of type 'Gender[]'
  */
 export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender[]'>;
+
+/**
+ * Reference to a field of type 'RoleType'
+ */
+export type EnumRoleTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RoleType'>;
+
+/**
+ * Reference to a field of type 'RoleType[]'
+ */
+export type ListEnumRoleTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RoleType[]'>;
 
 /**
  * Reference to a field of type 'Int'
@@ -738,6 +915,8 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter;
 export type GlobalOmitConfig = {
   t_user?: Prisma.t_userOmit;
+  t_role?: Prisma.t_roleOmit;
+  t_user_role?: Prisma.t_user_roleOmit;
 };
 
 /* Types for Logging */

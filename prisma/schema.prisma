@@ -19,6 +19,11 @@ enum Gender {
   UNKNOWN
 }
 
+enum RoleType {
+  custom
+  system
+}
+
 model t_user {
   id         String      @id
   username   String      @unique @db.VarChar(20)
@@ -27,4 +32,24 @@ model t_user {
   password   String      @db.VarChar(255)
   gender     Gender?     @default(UNKNOWN)
   avatarUrl  String?
+  user_roles t_user_role[]
+}
+
+model t_role {
+  id         String   @id @default(uuid(4)) @db.VarChar(40)
+  role_id    String   @unique @db.VarChar(20)
+  role_label String   @db.VarChar(20)
+  role_type  RoleType
+  user_roles t_user_role[]
+}
+
+model t_user_role {
+  id      String @id @default(uuid(4)) @db.VarChar(40)
+  user_id String
+  role_id String @db.VarChar(40)
+
+  user t_user @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  role t_role @relation(fields: [role_id], references: [id], onDelete: Cascade)
+
+  @@unique([user_id, role_id])
 }

@@ -4,8 +4,8 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 type JwtPayload = {
-  sub: number;
-  username: string;
+  sub: string;
+  roles: string[];
 };
 
 @Injectable()
@@ -21,10 +21,13 @@ export class JwtAuthStrategy extends PassportStrategy(Strategy, 'jwtAuth') {
   }
 
   async validate(payload: JwtPayload) {
-    if (!payload?.sub || !payload.username) {
+    if (!payload?.sub) {
       throw new UnauthorizedException('Invalid token payload');
     }
 
-    return { userId: payload.sub, username: payload.username };
+    return {
+      userId: payload.sub,
+      roles: payload.roles || [],
+    };
   }
 }

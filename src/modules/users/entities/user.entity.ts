@@ -1,5 +1,6 @@
 import { Exclude } from 'class-transformer';
 import { Gender } from '../../../generated/prisma/enums.js';
+import { RoleEntity } from './role.entity.js';
 
 // const GENDER_LABEL: Record<Gender, string> = {
 //   MALE: '男',
@@ -26,4 +27,6 @@ export class UserEntity {
   gender: Gender | null;
 
   avatarUrl: string | null;
+
+  user_roles: RoleEntity[];
 }

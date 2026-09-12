@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
-import type { AuthenticatedUser } from './types/authenticated-user.type';
+import { AuthedUser } from '@/types/user/authed-user';
 
 @Injectable()
 export class LoginService {
@@ -11,10 +11,16 @@ export class LoginService {
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(username: string, pass: string) {
-    const user = await this.usersService.findOne(username);
+  /**
+   * 返回的用户信息，会存在 context.user 中
+   */
+  async validateUser(username: string, pass: string): Promise<AuthedUser | null> {
+    const user = await this.usersService.findOneForAuth(username);
     if (user && (await bcrypt.compare(pass, user.password))) {
-      return user;
+      return {
+        id: user.id,
+        roles: user.user_roles.map((role) => role.role_id),
+      };
     }
     return null;
   }
@@ -24,8 +30,8 @@ export class LoginService {
    * @param user 已认证用户
    * @returns token
    */
-  async login(user: AuthenticatedUser) {
-    const payload = { username: user.username, sub: user.id };
+  async login(user: AuthedUser) {
+    const payload = { sub: user.id, roles: user.roles };
     return {
       token: this.jwtService.sign(payload),
     };

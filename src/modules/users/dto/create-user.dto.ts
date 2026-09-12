@@ -1,4 +1,4 @@
-import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IsArray, IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
 import { Gender } from '../../../generated/prisma/enums.js';
 
 export class CreateUserDto {
@@ -29,4 +29,10 @@ export class CreateUserDto {
   @IsOptional()
   @IsString({ message: '头像地址必须是字符串' })
   avatarUrl?: string;
+
+  @IsOptional()
+  @IsArray({ message: '角色必须是字符串数组' })
+  @IsString({ each: true, message: '角色数组中的每一项都必须是字符串' })
+  @MaxLength(40, { each: true, message: '角色 ID 长度不能超过40个字符' })
+  roles?: string[];
 }

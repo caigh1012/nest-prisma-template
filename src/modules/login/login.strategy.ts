@@ -14,6 +14,7 @@ export class LoginStrategy extends PassportStrategy(Strategy, 'login') {
 
   async validate(username: string, password: string) {
     const user = await this.loginService.validateUser(username, password);
+    console.log(user, '<___user78789798');
     if (!user) {
       throw new UnauthorizedException();
     }
