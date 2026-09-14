@@ -1,3 +1,4 @@
+import { UploadModule } from './modules/upload/upload.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
@@ -11,6 +12,7 @@ import { UsersModule } from './modules/users/users.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { RolesGuard } from './core/guards/roles.guard';
 import { PrismaModule } from './core/database/prisma.module';
+import { MinioModule } from './core/minio/minio.module';
 /**
  * 应用模块
  * 1. 引入配置模块
@@ -19,6 +21,7 @@ import { PrismaModule } from './core/database/prisma.module';
  */
 @Module({
   imports: [
+    UploadModule,
     // 引入 env 文件配置
     ConfigModule.forRoot({
       isGlobal: true,
@@ -65,6 +68,7 @@ import { PrismaModule } from './core/database/prisma.module';
     }),
     PassportModule,
     PrismaModule,
+    MinioModule,
     SharedModule,
     LoginModule,
     UsersModule,
