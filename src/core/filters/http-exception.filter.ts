@@ -22,7 +22,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
   private readonly logger = new Logger(HttpExceptionFilter.name);
 
   catch(exception: HttpException, host: ArgumentsHost) {
-    console.log(exception, 'exception');
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
@@ -52,7 +51,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
   private getMessage(exception: HttpException, status: number): string | string[] {
     if (exception instanceof HttpException) {
       const res = exception.getResponse();
-      // console.log(res, 'res');
       this.logger.log(res, 'res');
 
       if (typeof res === 'string') {

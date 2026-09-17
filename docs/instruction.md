@@ -53,3 +53,7 @@ HttpModule 用于发送 HTTP 请求，请求外部应用数据
 详细见 [passport-module-and-global-jwt-auth.md](./passport-module-and-global-jwt-auth.md)
 
 ## @nestjs/event-emitter
+
+## redis连接
+
+## 缓存策略

@@ -1,4 +1,4 @@
-export function parsePort(value: string | undefined) {
+export function parsePort(value: string | undefined, configKey = 'PORT') {
   if (!value) {
     return undefined;
   }
@@ -6,7 +6,7 @@ export function parsePort(value: string | undefined) {
   const port = Number.parseInt(value, 10);
 
   if (Number.isNaN(port)) {
-    throw new Error('MINIO_PORT must be a valid number');
+    throw new Error(`${configKey} must be a valid number`);
   }
 
   return port;

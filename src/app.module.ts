@@ -1,3 +1,4 @@
+import { RedisModule } from './core/redis/redis.module';
 import { UploadModule } from './modules/upload/upload.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -21,6 +22,7 @@ import { MinioModule } from './core/minio/minio.module';
  */
 @Module({
   imports: [
+    RedisModule,
     UploadModule,
     // 引入 env 文件配置
     ConfigModule.forRoot({
@@ -68,6 +70,7 @@ import { MinioModule } from './core/minio/minio.module';
     }),
     PassportModule,
     PrismaModule,
+    RedisModule,
     MinioModule,
     SharedModule,
     LoginModule,
