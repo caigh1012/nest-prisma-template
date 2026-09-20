@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import { Logger } from '@nestjs/common';
 
 const C = {
   reset: '\x1b[0m',
@@ -22,12 +23,14 @@ const METHOD_COLORS: Record<string, string> = {
   DELETE: C.red,
 };
 
+const logger = new Logger('LoggerMiddleware');
+
 export function loggerMiddleware(req: Request, _res: Response, next: NextFunction) {
   const method = req.method.toUpperCase();
   const color = METHOD_COLORS[method] ?? C.cyan;
   const ip = req.ip || req.socket.remoteAddress || '-';
 
-  console.log(
+  logger.log(
     `${C.bold}${color}${method}${C.reset} ` +
       `${C.blue}${req.originalUrl}${C.reset} ` +
       `${C.dim}${C.gray}→ ${ip}${C.reset}`,
@@ -40,7 +43,7 @@ export function loggerMiddleware(req: Request, _res: Response, next: NextFunctio
   if (req.body && Object.keys(req.body).length) params.body = req.body;
 
   if (Object.keys(params).length) {
-    console.log(`${C.dim}${C.yellow}  参数${C.reset}`, params);
+    logger.log(`${C.dim}${C.yellow}  参数${C.reset} ${JSON.stringify(params)}`);
   }
 
   next();
