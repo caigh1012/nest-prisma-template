@@ -5883,16 +5883,34 @@ nest-prisma-template/
 ├── .husky/                         # Git hooks（commit-msg / pre-commit）
 ├── .vscode/                        # 编辑器配置（extensions.json / settings.json）
 ├── docs/                           # 项目文档
-│   ├── instruction.md
-│   └── prisma.md
 ├── prisma/                         # Prisma 相关
 │   └── schema.prisma               # 数据模型定义
 ├── src/                            # 源代码目录
+│   ├── utils/
+│   │   └── parse-port.ts           # 环境变量端口号解析工具（用于解析 MinIO 等服务的端口配置）
 │   ├── config/
-│   │   └── constants.ts            # 全局常量配置
-│   ├── core/
-│   │   └── database/
-│   │       └── prisma.service.ts   # Prisma Client 服务
+│   │   ├── constants.ts            # 全局常量配置（如装饰器元数据 key）
+│   │   └── role.enum.ts            # 角色枚举定义
+│   ├── core/                       # 核心模块（全局通用能力集合，以 @Global 形式提供）
+│   │   ├── core.module.ts          # 核心模块入口，导出 Prisma / MinIO 等全局服务
+│   │   ├── database/
+│   │   │   └── prisma.service.ts   # Prisma Client 服务（基于 @prisma/adapter-pg 连接池封装）
+│   │   ├── exceptions/
+│   │   │   └── validation.exception.ts # 参数校验失败异常（400，统一 message 字段为 `字段名: 原因`）
+│   │   ├── filters/
+│   │   │   └── http-exception.filter.ts # 全局异常过滤器，统一返回 { code, message, data } 结构
+│   │   ├── guards/
+│   │   │   ├── jwt-auth.guard.ts   # JWT 鉴权守卫（基于 passport-jwt，含白名单放行逻辑）
+│   │   │   ├── roles.guard.ts      # 角色权限守卫（基于 @Roles 装饰器校验访问权限）
+│   │   │   └── strategy/
+│   │   │       └── jwt-auth.strategy.ts # JWT 鉴权策略（从 Authorization 提取 Bearer Token）
+│   │   ├── middlewares/
+│   │   │   └── logger.middleware.ts # 请求日志中间件（按 HTTP 方法着色输出 method/url/ip/参数）
+│   │   ├── minio/
+│   │   │   └── minio.service.ts    # MinIO 对象存储服务（封装上传/下载/预签名 URL 等操作）
+│   │   └── pipes/
+│   │       └── validation.pipe.ts  # 全局参数校验管道（class-transformer + class-validator）
+│   ├── types/                      # 全局类型定义
 │   ├── modules/
 │   │   ├── shared/
 │   │   │   └── shared.module.ts    # 共享模块
@@ -5934,8 +5952,9 @@ Do not use any other package manager.
 
 - `pnpm install` to install dependencies.
 - `pnpm start` to start the development server.
+- `pnpm start:dev` to start the development server with watch mode.
 - `pnpm build` to build the project.
-- `pnpm start` to start the project.
+- `pnpm start:prod` to start the project in production mode.
 - `pnpm lint` to lint the project.
 - `pnpm lint-staged` to lint the staged files.
 - `pnpm format` to format the project.
